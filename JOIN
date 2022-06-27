@@ -1,0 +1,181 @@
+JOIN-
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+1.Cross join 
+
+2. Inner join  
+
+3. Left join 
+
+4. Right join 
+
+5. Full join 
+
+6. Self join 
+------------------------------------------------------------------------------------------------------------------------------------------
+1.Cross Join- cross join return every row from one table crossed with every row from the second. 
+
+Syntax: SELECT Employee CROSS JOIN Department; 
+
+SELECT Name, Department FROM Employee CROSS JOIN Department; 
+
+Example:
+Employee Table-
+
+EmpID(PK)      Name         City 
+
+1              rahul       delhi 
+
+2              krish       bhopal 
+
+Department Table- 
+
+DID(FK)       DeoName 
+
+101            IT 
+
+102            HR 
+
+Output: 
+Name     Department 
+rahul      IT     
+krish      HR
+---------------------------------------------------------------------------------------------------------------------------------------------
+Inner join- 
+
+Return records that have matching values in both tables. 
+
+Example:
+Employee Table-
+
+empId             name             city 
+
+1                 rahul           bhopal 
+
+2                 mohan            delhi 
+
+3                 makhhi           delhi 
+
+Department Table- 
+
+dID              DepName           EmpID(FK) 
+
+101               IT                  2 
+
+102               HR                  1 
+
+103              Admin                2
+
+
+Synatx- SELECT column_name FROM table_1 INNER JOIN table_2 ON column_name=column_name; 
+
+Ex- select Department.depname, Department.did, Employee.city, Employee.name from dep inner join empi on Employee.empId= Department.empId; 
+
+Output like this: 
+
+Depname      did        city       name    
+   HR        102        Bhopal     Rahul  
+  Admin      103        Bhopal     Rahul  
+   IT        101        Delhi      Mohan  
+
+ 
+---------------------------------------------------------------------------------------------------------------------------------------------
+Left join- 
+
+The left join keyword return all rows from the left table, with the matching rows in the right table. The result is NULL in the right side when there is no match. 
+
+In a LEFT JOIN the table that comes before the join is the left table ,and the table that comes after the join is the right table. 
+
+Syntax- 
+
+SELECT Column_name FROM table1 
+
+LEFT JOIN table2 
+
+ON column_name=column_name; 
+
+Emp Table - 
+EmpID(PK)      Name         City 
+
+1              rahul       delhi 
+
+2              krish       bhopal 
+
+3               jay         Mumbai  
+
+4              Sonam       Patna  
+
+5             Mona         pune                   
+
+Dep Table - 
+did             DepName             Empid(FK) 
+
+101               IT                 3 
+
+102               HR                 1 
+
+103              Admin               2 
+
+104               IT                 1 
+
+Ex- SELECT Emp.Name,Dep. DepName FROM Emp  
+
+LEFT JOIN Dep ON Emp. Empid=Dep. Empid; 
+
+Output like this: 
+
+Name           DepName 
+jay              IT
+Rahul            HR 
+Krish          Admin 
+Rahul            IT 
+Sonam          NULL 
+Mona            NULL
+ 
+--------------------------------------------------------------------------------------------------------------------------------------------
+Right join- 
+
+Return all record from the right table, and the matched records from the left table. The result is NULL in the left side when there is no match. 
+
+In a RIGHT JOIN the table that comes before the join is the Left table, and the table that comes after the join is the Right table. 
+
+Emp Table - 
+
+Empid(PK)       Name           City 
+
+1              Rahul          Delhi  
+
+2              Krish          Bhopal  
+
+3              jay            Mumbai  
+
+4            Sonam            Patna  
+
+5             Mona            pune 
+
+Dep Table - 
+
+did           DepName       Empid(FK) 
+
+101             IT            3 
+
+102             HR            1 
+
+103           Admin           2 
+
+104            IT             1 
+
+Example- 
+
+SELECT Emp.Name,Dep.DepName FROM Emp  
+
+RIGHT JOIN Dep ON Emp.Empid=Dep.Empid; 
+
+Output like this- 
+
+Name      DepName 
+jay         IT 
+Rahul       HR 
+Krish      Admin 
+Rahul       IT 
